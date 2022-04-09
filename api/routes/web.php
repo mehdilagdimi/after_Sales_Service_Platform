@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages/dashboard');
-});
+    return view('signup');
+})->name('home');
 
 Route::get('/signup', [RegisterController::class, 'index']);
 Route::post('/signup', [RegisterController::class, 'store'])->name('signup');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');

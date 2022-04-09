@@ -26,7 +26,13 @@
             </a>
         </li>
         <li>
-            <a href="" class="p-4">Logout</a> 
+            <form action="{{ route('logout')}}" method='POST' class="p-3 inline">
+                @csrf
+                
+                <button type='submit'>
+                    Logout
+                </button>
+            </form>
         </li>
     </ul>
 </nav>
