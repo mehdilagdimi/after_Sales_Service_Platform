@@ -15,8 +15,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            //we will use signup route in our project instead of login
-            return route('signup');
+            //we will use auth route in our project instead of login
+            return route('auth');
             // return route('login'); default value login when installing laravel
         }
     }

@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Response;
+use Illuminate\Http\Request;
 
-
-class UserController extends Controller
+class ResponseController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-        if (Auth::user()->role !== 'admin') {
-            return redirect()->route('/auth');
-        }
-    }
     /**
      * Display a listing of the resource.
      *
@@ -40,10 +30,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,10 +41,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Response $response)
     {
         //
     }
@@ -62,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Response $response)
     {
         //
     }
@@ -73,11 +63,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, Response $response)
     {
         //
     }
@@ -85,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Response $response)
     {
         //
     }

@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-  
-
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
 
     public function index(){
-
         return view('signup');
     }
     

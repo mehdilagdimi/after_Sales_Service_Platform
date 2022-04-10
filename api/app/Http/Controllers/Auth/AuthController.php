@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest'])->only(['index', 'auth']);
+    }
     /**
-     * Display a listing of the resource.
+     *adminlay a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -17,8 +21,6 @@ class AuthController extends Controller
     {
         return view('authenticate');
     }
-
-   
 
     /**
      * Store a newly created resource in storage.
@@ -36,10 +38,9 @@ class AuthController extends Controller
         if(!Auth::attempt([
             'email'=> $request->get('email'),
             'password'=> $request->get('password')
-        ])){
+        ], $request->get('remember-me'))){
             return back()->with('status', 'Invalid credentials');
         };
-    
         return redirect()->route('dashboard');
     }
 

@@ -13,12 +13,13 @@
         @yield('navbar')
       </div>
       @guest
-      You are not Authenticated
+      You are not Authenticated 
       @yield("register")
       @endguest
 
       @auth
-          You are authenticated
+          You are authenticated {{ Auth::user()->fname }} {{ Auth::user()->lname }}
+
       @endauth
 </body>
 <footer>
