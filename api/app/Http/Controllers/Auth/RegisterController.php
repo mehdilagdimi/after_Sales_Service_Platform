@@ -34,6 +34,7 @@ class RegisterController extends Controller
             'fname'=> $request->get('fname'),
             'lname'=> $request->get('lname'),
             'email'=> $request->get('email'),
+            'role'=> 'client',
             'password'=> Hash::make($request->get('password')),
         ]);
 

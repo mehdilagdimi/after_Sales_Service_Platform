@@ -48,6 +48,7 @@ class AuthController extends Controller
         return redirect()->route('home');
         // return redirect()->route('home');
     }
+
      /**
      * Show the form for creating a new resource.
      *

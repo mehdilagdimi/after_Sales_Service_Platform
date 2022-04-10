@@ -23,15 +23,18 @@ Route::get('/', function () {
 Route::get('/signup', [RegisterController::class, 'index']);
 Route::post('/signup', [RegisterController::class, 'store'])->name('signup');
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')
+        ->middleware('auth');
 
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 
-Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard')
+        ->middleware('auth');
 
-Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');
+Route::get('/tickets', [TicketController::class, 'index'])->name('tickets')
+    ->middleware('auth');
+Route::post('/tickets', [TicketController::class, 'index'])->name('tickets');
 
-Route::get('/tickets/{ref}', [TicketController::class, 'ticket']);
-
-
+Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])
+    ->middleware('auth');
