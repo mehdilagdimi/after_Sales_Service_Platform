@@ -33,13 +33,15 @@ Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 
 Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
+// Route::post('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
         // ->middleware('auth');
 
-Route::get('/tickets', [TicketController::class, 'index'])->name('tickets')
+Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets')
     ->middleware('auth');
-Route::post('/tickets', [TicketController::class, 'store'])->name('tickets');
+Route::post('/tickets/create', [TicketController::class, 'create'])->name('createTicket');
+Route::post('/tickets/store', [TicketController::class, 'store'])->name('storeTicket');
 
-Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])
+Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('showTicket')
     ->middleware('auth');
 
     

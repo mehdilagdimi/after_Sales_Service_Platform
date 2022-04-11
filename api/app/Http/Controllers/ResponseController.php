@@ -12,30 +12,30 @@ class ResponseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware("auth");
+        $this->middleware("admin");
+    }
+
     public function index()
     {
-        //
+        foreach (Response::all() as $response) {
+            var_dump($response);
+        }
+        return view('dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        // $this->validate($request, [
+        //     'service' => ,
+        // ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        Response::create([
+            "body" => $request->body
+        ]);
+        return view('dashboard');
     }
 
     /**

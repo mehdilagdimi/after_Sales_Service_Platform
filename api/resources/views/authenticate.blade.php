@@ -8,7 +8,7 @@
         {{-- <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in</h2> --}}
        
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" action="{{ route('auth')}}" method="POST">
         @csrf
         @if (session('status'))
           {{ session('status')}}

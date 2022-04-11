@@ -7,46 +7,30 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware("auth");
+        $this->middleware("admin");
+    }
+
     public function index()
     {
-        //
+        foreach (Service::all() as $service) {
+            var_dump($service);
+        }
+        return view('dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        // $this->validate($request, [
+        //     'service' => ,
+        // ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
-    {
-        //
+        Service::create([
+            "service" => $request->service
+        ]);
+        return view('dashboard');
     }
 
     /**

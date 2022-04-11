@@ -2162,7 +2162,16 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // const addTicketBtn = document.querySelector('.addTicket-Btn');
+// addTicketBtn.addEventListener('click', function (btn) {
+//     console.log(this.btn.className)
+//     const ticketForm = document.querySelector('.addTicket-form');
+//     ticketForm.classList.remove('hidden');
+//     this.btn.classList.add('hidden')
+// });
+// function showTicketForm(btn){
+//     btn.
+// }
 
 /***/ }),
 
