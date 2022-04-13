@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             return 0;
         });
 
-        //Create admin blade helper
+        //Create client blade helper
         Blade::if('client', function () {            
             if (auth()->user() && auth()->user()->role == 'client') {
                 return 1;

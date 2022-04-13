@@ -35,7 +35,9 @@ class TicketController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
         $this->validate($request, [
+            'subject' => 'string|max:150',
             'body' => 'required'
         ]);
         
@@ -48,6 +50,7 @@ class TicketController extends Controller
         } else {
             $pos = strpos($latestTicket->ref, "REF");
             $ticketNum = (int)(substr($latestTicket->ref, ($pos + 5)));
+            //increment the number
             $addToRef = strval($ticketNum + 1);
         }
         
@@ -56,13 +59,15 @@ class TicketController extends Controller
 
         Ticket::create([
             'ref' => $ref,
-            'service' => $request->get('service'),
-            'status' => 'new',
+            'user_id' => Auth::user()->id,
+            'service_id' => $request->get('service'),
+            //'new' status is of id 1
+            'status_id' => 1, 
             'subject' => ($request->get('subject') == null ? "Assistance" : $request->get('subject')),
             'body' => $request->get('body')
         ]);
 
-        return view('tickets');
+        return view('pages.tickets');
     }
 
     public function ticket(){
