@@ -17,6 +17,7 @@ class UserController extends Controller
             return redirect()->route('/auth');
         }
     }
+
     /**
      * Display a listing of the resource.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResponseController extends Controller
 {
@@ -28,14 +29,16 @@ class ResponseController extends Controller
 
     public function create(Request $request)
     {
-        // $this->validate($request, [
-        //     'service' => ,
-        // ]);
+        $this->validate($request, [
+            'body' => "required",
+        ]);
 
         Response::create([
+            "user_id" => Auth::user()->id,
+            "ticket_id" => $request->ticket_id,
             "body" => $request->body
         ]);
-        return view('dashboard');
+        return view('pages.tickets');
     }
 
     /**

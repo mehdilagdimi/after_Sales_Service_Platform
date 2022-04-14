@@ -12,4 +12,9 @@ class Service extends Model
     protected $fillable = [
         'service'
     ];
+    
+    
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
 }

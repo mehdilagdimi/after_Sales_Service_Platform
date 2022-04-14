@@ -17,4 +17,17 @@ class Ticket extends Model
         'subject',
         'body'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function service(){
+        return $this->belongsTo(Service::class);
+    }
+
+    public function status(){
+        // $this->hasOne(Status::class); this will cause errors?
+        return $this->belongsTo(Status::class);
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
+use App\Models\Service;
+use App\Models\Status;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +16,7 @@ class TicketController extends Controller
     public function __construct()
     {
         $this->middleware(['auth']);
+        $this->middleware(['client'])->only(['create', 'store']);
         $this->middleware(['admin'])->only(['destroy']);
     }
 
@@ -67,10 +71,21 @@ class TicketController extends Controller
             'body' => $request->get('body')
         ]);
 
-        return view('pages.tickets');
+        $ticket = Ticket::where('ref', $ref)->firstOrFail();
+        // $ticket = Ticket::latest('created_at)->first();
+
+        // dd($ticket->service->service);
+        // dd($ticket->status->status);
+        // dd($ticket->user->fname);
+        // dd($ticket->user->lname);
+        // $ticket->fname  = Auth::user()->fname;
+        // $ticket->lname  = Auth::user()->lname;
+
+        // dd($ticket);
+        return view('pages.tickets', ['ticket' => $ticket]);
     }
 
-    public function ticket(){
+    public function ticket(Request $request){
 
     }
 

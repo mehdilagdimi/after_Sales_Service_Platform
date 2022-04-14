@@ -10,6 +10,8 @@ class Response extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'ticket_id',
         'body', 
     ];
 }
