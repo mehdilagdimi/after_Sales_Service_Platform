@@ -47,3 +47,7 @@ Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('showTic
     
 Route::get('/destroy', [TicketController::class, 'destroy'])->name('destroy');
 
+
+Route::post('/responses/create', [ResponseController::class, 'create'])->name('createResponse');
+Route::post('/responses/store', [ResponseController::class, 'store'])->name('storeResponse');
+

@@ -46,7 +46,7 @@ class TicketController extends Controller
         ]);
         
         $latestTicket = Ticket::where('user_id', Auth::user()->id)
-                        ->latest()
+                        ->latest('created_at')
                         ->first();
 
         if($latestTicket == null) {
@@ -72,7 +72,7 @@ class TicketController extends Controller
         ]);
 
         $ticket = Ticket::where('ref', $ref)->firstOrFail();
-        // $ticket = Ticket::latest('created_at)->first();
+        // $ticket = Ticket::latest('created_at')->first();
 
         // dd($ticket->service->service);
         // dd($ticket->status->status);

@@ -8,6 +8,15 @@
 {{-- @section('ticket')
     $ticket;
 @endsection --}}
+@section('responses')
+    @foreach($responses as $response)
+    @endforeach
+@endsection
+
+@section('addResponse') 
+    @include('layout.response')
+@endsection
+
 
 @section('footer') 
     @include('layout.footer')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Response;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,15 +20,23 @@ class ResponseController extends Controller
         $this->middleware("admin");
     }
 
-    public function index()
+    public function index(Request $request)
     {
         foreach (Response::all() as $response) {
             var_dump($response);
         }
-        return view('dashboard');
+        $responses = Ticket::find(1)->responses()
+                         ->where('id', $request->ticket_id);
+        return view('dashboard', ['responses' => $responses]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request){
+        //session
+        return back()->with('addResponse', true);
+        // return view('pages.tickets');
+    }
+
+    public function store(Request $request)
     {
         $this->validate($request, [
             'body' => "required",
@@ -38,7 +47,12 @@ class ResponseController extends Controller
             "ticket_id" => $request->ticket_id,
             "body" => $request->body
         ]);
-        return view('pages.tickets');
+
+        $response = Response::latest('created_at')
+                            ->where('ticket_id', $request->ticket_id)
+                            ->first();
+        dd($response);
+        return view('pages.tickets', ['response', $response]);
     }
 
     /**

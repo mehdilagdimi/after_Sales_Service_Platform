@@ -30,4 +30,8 @@ class Ticket extends Model
         // $this->hasOne(Status::class); this will cause errors?
         return $this->belongsTo(Status::class);
     }
+
+    public function responses(){
+        return $this->hasMany(Response::class);
+    }
 }
