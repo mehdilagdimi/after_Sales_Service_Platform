@@ -24,6 +24,10 @@ class TicketController extends Controller
 
     }
 
+    public function ticket(Request $request){
+
+    }
+    
     public function create(Request $request){
         // $this->validate($request, [
         //     'showForm' => 'required'
@@ -74,20 +78,22 @@ class TicketController extends Controller
         // dd($ticket->status->status);
         // dd($ticket->user->fname);
         // dd($ticket->user->lname);
-        // $ticket->fname  = Auth::user()->fname;
-        // $ticket->lname  = Auth::user()->lname;
 
         // dd($ticket);
         return view('pages.tickets', ['ticket' => $ticket]);
     }
 
-    public function ticket(Request $request){
+   
 
-    }
+    public function destroy(Request $request){
+        $this->validate($request, [
+            'ticket_id' => 'required'
+        ]);
 
-    public function destroy(){
-        var_dump(Auth::user()->role);
-        dd('test admin nmiddleware');
+        $res = Ticket::find($request->ticket_id)->delete();
+        session()->flash('Ticket delete status', $res);
+
+        return redirect()->route('dashboard');
     }
 
 }

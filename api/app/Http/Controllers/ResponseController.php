@@ -17,6 +17,7 @@ class ResponseController extends Controller
     public function __construct()
     {
         $this->middleware("auth");
+        // $this->middleware('admin')->only('destroy');
     }
 
     public function index(Request $request)
@@ -51,6 +52,8 @@ class ResponseController extends Controller
             "body" => $request->body
         ]);
 
+        session(["new response" => true]);
+        
         // return view('pages.tickets', ['response' => $response]);
         return $this->index($request);
     }
@@ -93,8 +96,15 @@ class ResponseController extends Controller
      * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Response $response)
+    public function destroy(Request $request)
     {
-        //
+        $this->validate($request, [
+            'ticket_id' => 'required'
+        ]);
+
+        $res = Response::find($request->response_id)->delete();
+        session()->flash('Ticket delete status', $res);
+
+        return $this->index($request);
     }
 }

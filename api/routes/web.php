@@ -41,6 +41,7 @@ Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets')
     ->middleware('auth');
 Route::post('/tickets/create', [TicketController::class, 'create'])->name('createTicket');
 Route::post('/tickets/store', [TicketController::class, 'store'])->name('storeTicket');
+Route::post('/tickets/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
 
 Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('showTicket')
     ->middleware('auth');
@@ -53,4 +54,5 @@ Route::post('/responses/create', [ResponseController::class, 'create'])->name('c
 Route::post('/responses/store', [ResponseController::class, 'store'])->name('storeResponse');
 Route::post('/responses/edit', [ResponseController::class, 'edit'])->name('editResponse');
 Route::post('/responses/update', [ResponseController::class, 'update'])->name('updateResponse');
+Route::post('/responses/delete', [ResponseController::class, 'destroy'])->name('deleteResponse');
 
