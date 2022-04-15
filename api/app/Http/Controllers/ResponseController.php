@@ -17,23 +17,26 @@ class ResponseController extends Controller
     public function __construct()
     {
         $this->middleware("auth");
-        $this->middleware("admin");
     }
 
     public function index(Request $request)
     {
-        foreach (Response::all() as $response) {
-            var_dump($response);
-        }
-        $responses = Ticket::find(1)->responses()
-                         ->where('id', $request->ticket_id);
-        return view('dashboard', ['responses' => $responses]);
+        $ticket = Ticket::findOrFail($request->ticket_id);
+        // dd($ticket);
+    
+        $responses = Ticket::find($ticket->id)->responses; 
+        // dd($responses);
+
+        return view('pages.tickets', ['responses' => $responses, 'ticket' => $ticket]);
     }
 
     public function create(Request $request){
-        //session
-        return back()->with('addResponse', true);
-        // return view('pages.tickets');
+        session(['addResponse' => true]);
+        // $showForm = true;
+        $ticket = Ticket::findOrFail($request->ticket_id);
+        // dd($ticket->id);
+        return view('pages.tickets' , ['ticket' => $ticket]);
+        // return back();
     }
 
     public function store(Request $request)
@@ -48,11 +51,13 @@ class ResponseController extends Controller
             "body" => $request->body
         ]);
 
-        $response = Response::latest('created_at')
-                            ->where('ticket_id', $request->ticket_id)
-                            ->first();
-        dd($response);
-        return view('pages.tickets', ['response', $response]);
+        // $response = Response::latest('created_at')
+        //                     ->where('ticket_id', $request->ticket_id)
+        //                     ->first();
+        // dd($response);
+       
+        // return view('pages.tickets', ['response' => $response]);
+        return $this->index($request);
     }
 
     /**

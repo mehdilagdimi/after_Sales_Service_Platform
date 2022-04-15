@@ -9,12 +9,18 @@
     $ticket;
 @endsection --}}
 @section('responses')
-    @foreach($responses as $response)
-    @endforeach
+    @isset($responses)
+        @foreach($responses as $response)
+            <div>
+                <h3>Answer : {{ $response->id }}</h3>
+                {{ $response->body }}
+            </div>
+        @endforeach
+    @endisset
 @endsection
 
 @section('addResponse') 
-    @include('layout.response')
+    @include('layout.addResponse')
 @endsection
 
 

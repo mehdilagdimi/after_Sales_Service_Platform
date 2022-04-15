@@ -15,16 +15,16 @@ class TicketController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth']);
-        $this->middleware(['client'])->only(['create', 'store']);
-        $this->middleware(['admin'])->only(['destroy']);
+        $this->middleware('auth');
+        $this->middleware('client')->only('create', 'store');
+        $this->middleware('admin')->only('destroy');
     }
 
     public function index(){
 
     }
 
-    public function create(){
+    public function create(Request $request){
         // $this->validate($request, [
         //     'showForm' => 'required'
         // ]);
@@ -40,6 +40,7 @@ class TicketController extends Controller
 
     public function store(Request $request){
         // dd($request);
+        session()->forget('showForm');
         $this->validate($request, [
             'subject' => 'string|max:150',
             'body' => 'required'
