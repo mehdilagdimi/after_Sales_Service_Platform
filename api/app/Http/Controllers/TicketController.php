@@ -28,11 +28,6 @@ class TicketController extends Controller
         // $this->validate($request, [
         //     'showForm' => 'required'
         // ]);
-        // dd(session()->all());
-        // dd($request);
-      
-        // session()->put('showForm' , 'yes');
-        // dd(session()->all());
         session(['showForm' => 'true']);
         return redirect()->route('dashboard');
         // return view('pages.addticket');

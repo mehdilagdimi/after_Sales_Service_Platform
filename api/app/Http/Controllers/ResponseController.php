@@ -33,10 +33,10 @@ class ResponseController extends Controller
     public function create(Request $request){
         session(['addResponse' => true]);
         // $showForm = true;
-        $ticket = Ticket::findOrFail($request->ticket_id);
-        // dd($ticket->id);
-        return view('pages.tickets' , ['ticket' => $ticket]);
-        // return back();
+        // $ticket = Ticket::findOrFail($request->ticket_id);
+        // // dd($ticket->id);
+        // return view('pages.tickets' , ['ticket' => $ticket]);
+        return $this->index($request);
     }
 
     public function store(Request $request)
@@ -51,24 +51,8 @@ class ResponseController extends Controller
             "body" => $request->body
         ]);
 
-        // $response = Response::latest('created_at')
-        //                     ->where('ticket_id', $request->ticket_id)
-        //                     ->first();
-        // dd($response);
-       
         // return view('pages.tickets', ['response' => $response]);
         return $this->index($request);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Response  $response
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Response $response)
-    {
-        //
     }
 
     /**
@@ -77,9 +61,10 @@ class ResponseController extends Controller
      * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function edit(Response $response)
+    public function edit(Request $request)
     {
-        //
+        session(['showForm' => $request->response_id]);
+        return $this->index($request);
     }
 
     /**
@@ -89,9 +74,15 @@ class ResponseController extends Controller
      * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Response $response)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'response_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        Response::where('id', $request->response_id)->update(['body' => $request->body]);
+        return redirect()->back();
     }
 
     /**

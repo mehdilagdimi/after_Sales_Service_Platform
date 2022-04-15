@@ -51,4 +51,6 @@ Route::get('/destroy', [TicketController::class, 'destroy'])->name('destroy');
 
 Route::post('/responses/create', [ResponseController::class, 'create'])->name('createResponse');
 Route::post('/responses/store', [ResponseController::class, 'store'])->name('storeResponse');
+Route::post('/responses/edit', [ResponseController::class, 'edit'])->name('editResponse');
+Route::post('/responses/update', [ResponseController::class, 'update'])->name('updateResponse');
 
