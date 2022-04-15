@@ -32,7 +32,8 @@
                         <form action="{{ route('updateResponse') }}" method="POST"
                             class="box-border bg-white flex flex-col border-solid border-red-400 border-2 w-4/6 max-w-2xl p-5">
                             @csrf
-
+                            
+                            <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
                             <input type="hidden" id="response_id" name="response_id" value="{{ $response->id }}">
                             {{-- <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}"> --}}
                             <label for="response">Response</label>

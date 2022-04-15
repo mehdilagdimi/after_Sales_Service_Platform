@@ -34,7 +34,7 @@ class ResponseController extends Controller
         session(['addResponse' => true]);
         // $showForm = true;
         // $ticket = Ticket::findOrFail($request->ticket_id);
-        // // dd($ticket->id);
+        // dd($ticket->id);
         // return view('pages.tickets' , ['ticket' => $ticket]);
         return $this->index($request);
     }
@@ -74,6 +74,7 @@ class ResponseController extends Controller
      * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -82,9 +83,10 @@ class ResponseController extends Controller
         ]);
 
         Response::where('id', $request->response_id)->update(['body' => $request->body]);
-        return redirect()->back();
+        // return redirect()->back();
+        return $this->index($request);
     }
-
+ 
     /**
      * Remove the specified resource from storage.
      *
