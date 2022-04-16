@@ -37,6 +37,7 @@
 @if (session('addResponse'))
     @yield('addResponse')
     {{ session()->forget('addResponse') }}
+    {{ Session::save() }}
 @endif
 
 @yield('footer')

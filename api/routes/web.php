@@ -39,16 +39,19 @@ Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard
 
 Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets')
     ->middleware('auth');
-Route::post('/tickets/create', [TicketController::class, 'create'])->name('createTicket');
-Route::post('/tickets/store', [TicketController::class, 'store'])->name('storeTicket');
-Route::post('/tickets/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
+Route::post('/ticket/create', [TicketController::class, 'create'])->name('createTicket');
+Route::post('/ticket/store', [TicketController::class, 'store'])->name('storeTicket');
+Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
 
-Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('showTicket')
-    ->middleware('auth');
+// Route::get('/tickets/{id}', [TicketController::class, 'ticket'])->name('getTicket')
+// Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('getTicket')
+    // ->middleware('auth');
 
     
 Route::get('/destroy', [TicketController::class, 'destroy'])->name('destroy');
 
+
+Route::get('/ticket/{id}', [ResponseController::class, 'index'])->name('getTicket');
 
 Route::post('/responses/create', [ResponseController::class, 'create'])->name('createResponse');
 Route::post('/responses/store', [ResponseController::class, 'store'])->name('storeResponse');

@@ -17,12 +17,13 @@ class ResponseController extends Controller
     public function __construct()
     {
         $this->middleware("auth");
-        // $this->middleware('admin')->only('destroy');
+        $this->middleware('admin')->only('destroy');
     }
 
-    public function index(Request $request)
+    public function index($id)
     {
-        $ticket = Ticket::findOrFail($request->ticket_id);
+        $ticket = Ticket::findOrFail($id);
+        // $ticket = Ticket::findOrFail($request->ticket_id);
         // dd($ticket);
     
         $responses = Ticket::find($ticket->id)->responses; 
@@ -37,7 +38,8 @@ class ResponseController extends Controller
         // $ticket = Ticket::findOrFail($request->ticket_id);
         // dd($ticket->id);
         // return view('pages.tickets' , ['ticket' => $ticket]);
-        return $this->index($request);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+        // return $this->index($request);
     }
 
     public function store(Request $request)
@@ -55,7 +57,8 @@ class ResponseController extends Controller
         session(["new response" => true]);
         
         // return view('pages.tickets', ['response' => $response]);
-        return $this->index($request);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+        // return $this->index($request);
     }
 
     /**
@@ -67,7 +70,8 @@ class ResponseController extends Controller
     public function edit(Request $request)
     {
         session(['showForm' => $request->response_id]);
-        return $this->index($request);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+        // return $this->index($request);
     }
 
     /**
@@ -87,7 +91,8 @@ class ResponseController extends Controller
 
         Response::where('id', $request->response_id)->update(['body' => $request->body]);
         // return redirect()->back();
-        return $this->index($request);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+        // return $this->index($request);
     }
  
     /**
@@ -105,6 +110,8 @@ class ResponseController extends Controller
         $res = Response::find($request->response_id)->delete();
         session()->flash('Ticket delete status', $res);
 
-        return $this->index($request);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+
+        // return $this->index($request);
     }
 }

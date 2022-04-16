@@ -20,14 +20,14 @@ class TicketController extends Controller
         $this->middleware('admin')->only('destroy');
     }
 
-    public function index(){
-
+    public function index($data){
+      
     }
 
-    public function ticket(Request $request){
-
+    public function ticket($id){
+    //    return redirect()->route('showResponses', ['id' => $id]);
     }
-    
+
     public function create(Request $request){
         // $this->validate($request, [
         //     'showForm' => 'required'
@@ -80,7 +80,8 @@ class TicketController extends Controller
         // dd($ticket->user->lname);
 
         // dd($ticket);
-        return view('pages.tickets', ['ticket' => $ticket]);
+        return redirect()->route('getTicket', ['id' => $ticket->id]);
+        // return view('pages.tickets', ['ticket' => $ticket]);
     }
 
    
