@@ -84,8 +84,6 @@ class TicketController extends Controller
         // return view('pages.tickets', ['ticket' => $ticket]);
     }
 
-   
-
     public function destroy(Request $request){
         $this->validate($request, [
             'ticket_id' => 'required'
