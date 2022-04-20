@@ -41,11 +41,14 @@ class AuthController extends Controller
         ], $request->get('remember-me'))){
             return back()->with('status', 'Invalid credentials');
         };
+        $request->session()->regenerate();
         return redirect()->route('dashboard');
     }
 
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('home');
         // return redirect()->route('home');
     }

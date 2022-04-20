@@ -43,7 +43,7 @@ class RegisterController extends Controller
             'email'=> $request->get('email'),
             'password'=> $request->get('password')
         ]);
-    
+        $request->session()->regenerate();
         return redirect()->route('dashboard');
     }
 
