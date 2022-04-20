@@ -20,12 +20,16 @@ class TicketController extends Controller
         $this->middleware('admin')->only('destroy');
     }
 
-    public function index($data){
-      
-    }
-
-    public function ticket($id){
-    //    return redirect()->route('showResponses', ['id' => $id]);
+    public function index(){
+        if(Auth::user()->role == 'client'){
+            $user_id = Auth::user()->id;
+            $tickets = User::find($user_id)->tickets;
+        } else {
+            $tickets = Ticket::orderBy('created_at', 'desc')
+                            ->paginate(10);
+                            
+        }  
+        return view('pages.dashboard', ['tickets' => $tickets]);
     }
 
     public function create(Request $request){

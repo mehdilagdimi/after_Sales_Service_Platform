@@ -15,8 +15,8 @@ class DashBoardController extends Controller
     
     public function index()
     {
-        // dd(auth()->user()->password);
-        // dd(Auth::user());
-        return view('pages.dashboard');
+        
+        // return view('pages.dashboard');
+        return redirect()->route('showTickets');
     }
 }

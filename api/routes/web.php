@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('staticpage');
     })->name('home')
       ->middleware('auth');
 
@@ -37,8 +37,7 @@ Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard
 // Route::post('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
         // ->middleware('auth');
 
-Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets')
-    ->middleware('auth');
+Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets');
 Route::post('/ticket/create', [TicketController::class, 'create'])->name('createTicket');
 Route::post('/ticket/store', [TicketController::class, 'store'])->name('storeTicket');
 Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
