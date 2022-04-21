@@ -15,7 +15,7 @@
 <nav class="p-2 bg-gray-50 flex justify-end w-full border-b-2 border-indigo-600">
     <ul class="flex items-center text-sm font-semibold">
         <li>
-            <a href="" class="p-4">   Home 
+            <a href="{{ route('dashboard')}}" class="p-4">   Home 
             </a>
         </li>
         @guest

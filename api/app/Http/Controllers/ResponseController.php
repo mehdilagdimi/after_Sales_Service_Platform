@@ -24,9 +24,10 @@ class ResponseController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
         // $ticket = Ticket::findOrFail($request->ticket_id);
-        // dd($ticket);
-    
+        // dd($ticket);  
+
         $responses = Ticket::find($ticket->id)->responses; 
+        $ticket->responsesCount = count($responses);
         // dd($responses);
 
         return view('pages.tickets', ['responses' => $responses, 'ticket' => $ticket]);

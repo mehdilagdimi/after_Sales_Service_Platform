@@ -15,7 +15,7 @@ class TicketController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this->middleware('client')->only('create', 'store');
         $this->middleware('admin')->only('destroy');
     }
@@ -24,10 +24,17 @@ class TicketController extends Controller
         if(Auth::user()->role == 'client'){
             $user_id = Auth::user()->id;
             $tickets = User::find($user_id)->tickets;
+            foreach($tickets as $ticket){
+                $responses = Ticket::find($ticket->id)->responses;
+                $ticket->responsesCount = count($responses);
+            }
         } else {
             $tickets = Ticket::orderBy('created_at', 'desc')
-                            ->paginate(10);
-                            
+                            ->paginate(10); 
+            foreach($tickets as $ticket){
+                $responses = Ticket::find($ticket->id)->responses;
+                $ticket->responsesCount = count($responses);
+            }
         }  
         return view('pages.dashboard', ['tickets' => $tickets]);
     }
