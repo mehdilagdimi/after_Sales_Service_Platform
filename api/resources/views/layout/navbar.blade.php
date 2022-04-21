@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
 </head>
-<div class="container mx-auto">
-<nav class="p-2 bg-gray-50 flex justify-end w-full border-b-4 border-indigo-600 text-sm font-semibold">
-    <ul class="flex items-center">
+
+<nav class="p-2 bg-gray-50 flex justify-end w-full border-b-2 border-indigo-600">
+    <ul class="flex items-center text-sm font-semibold">
         <li>
             <a href="" class="p-4">   Home 
             </a>
@@ -38,7 +38,7 @@
             <form action="{{ route('logout')}}" method='POST' class="p-3 inline">
                 @csrf
                 
-                <button type='submit'>
+                <button type='submit' class="text-sm font-semibold">
                     Logout
                 </button>
             </form>
@@ -46,5 +46,4 @@
         @endauth
     </ul>
 </nav>
-</div>
 @endsection

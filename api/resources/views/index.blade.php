@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    <div class="flex items-center md:container md:mx-auto px-16">
-        @yield('navbar')
-    </div>
+    <div class="container mx-auto px-30">
+
+    @yield('navbar')
+
+    {{-- <div class="container mx-auto px-30"> --}}
     @guest
         @yield("register")
     @endguest
@@ -23,8 +25,10 @@
         @client
         <form action="{{ route('createTicket') }}" method='POST' class="flex justify-end p-6 addTicket-btn">
             @csrf
-            <button type='submit' class="p-2 bg-white border-2 border-red-400 rounded text-black font-medium">Need
-                Assistance?</button>
+            <div class="p-1 bg-gray-100 rounded-lg mx-20">
+            <button type='submit' class="p-2 bg-white border-2 border-indigo-600 rounded text-black font-semibold">
+                ADD TICKET</button>
+            </div>
         </form>
 
         {{-- Show only when button above is clicked 'Need assistance?' --}}
@@ -56,16 +60,30 @@
             </div>
         @endif
         @endclient
+        <div class="bg-white p-3">
         @foreach ($tickets as $ticket)
-            <div class="border-solid border-black border-2 rounded-sm">
+        <div class="flex flex-row  bg-gray-50 border-gray-100 border-2 border-solid rounded-sm mx-20 my-4 p-4">
+            <div class="flex-1 border-solid bg-white border-gray-50 border-2 rounded-sm p-6">
+                <div>
                 <h3>Service : {{ $ticket->service->service }}</h3>
                 <h3>REF: {{ $ticket->ref }}</h3>
                 <h3>STATUS : {{ $ticket->status->status }}</h3>
                 <h3>SUBJECT : {{ $ticket->subject }}</h3>
                 <p>{{ $ticket->body }}</p>
+                </div>
+                <div class="">
+                </div>
             </div>
+            <div class="border-solid bg-white border-gray-50 border-2 rounded-sm p-6">
+                <div class="">
+                    <img class="mx-auto h-5 w-auto" src='{{asset('bookmark-svgrepo-com.svg')}}' alt="pinpoint">
+                </div>
+            </div>
+        </div>
         @endforeach
+        </div>
     @endauth
+    </div>
 </body>
 
 <footer>
