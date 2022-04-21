@@ -4,7 +4,7 @@
 <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+        <img class="mx-auto h-22 w-auto" src="https://i0.wp.com/codemyui.com/wp-content/uploads/2019/10/Google-SVG-Logo-Using-GreenSock-Animation.gif?fit=880%2C440&ssl=1" alt="Workflow">
         {{-- <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in</h2> --}}
        
       </div>
@@ -14,13 +14,13 @@
           {{ session('status')}}
         @endif       
         <input type="hidden" name="remember" value="true">
-        <div class="rounded-md shadow-sm -space-y-px">
+        <div class="rounded-md shadow-sm bg-gray-100 -space-y-px">
          
-          <div>
+          <div class="p-3">
             <label for="email-address" class="sr-only">Email address</label>
             <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
           </div>
-          <div>
+          <div class="p-3">
             <label for="password" class="sr-only">Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
           </div>

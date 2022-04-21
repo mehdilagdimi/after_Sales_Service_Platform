@@ -14,9 +14,12 @@ class DashBoardController extends Controller
     } 
     
     public function index()
-    {
-        
+    {    
         // return view('pages.dashboard');
         return redirect()->route('showTickets');
+    }
+
+    public function adminBoard(){
+        return redirect()->route('showAdminBoard');
     }
 }

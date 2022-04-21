@@ -33,6 +33,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
 
+Route::get('/dashboard', [DashBoardController::class, 'adminBoard'])->name('showAdminBoard');
 Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
 // Route::post('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
         // ->middleware('auth');
