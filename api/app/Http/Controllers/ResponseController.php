@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Response;
 use App\Models\Ticket;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,7 +55,9 @@ class ResponseController extends Controller
             "ticket_id" => $request->ticket_id,
             "body" => $request->body
         ]);
+        $status_id = Status::where('status', 'answered')->pluck('id');
 
+        Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
         session(["new response" => true]);
         
         // return view('pages.tickets', ['response' => $response]);

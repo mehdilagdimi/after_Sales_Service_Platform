@@ -20,26 +20,28 @@ class TicketController extends Controller
         $this->middleware('admin')->only('destroy');
     }
 
-    public function index(){
-        if(Auth::user()->role == 'client'){
+    public function index()
+    {
+        if (Auth::user()->role == 'client') {
             $user_id = Auth::user()->id;
             $tickets = User::find($user_id)->tickets;
-            foreach($tickets as $ticket){
+            foreach ($tickets as $ticket) {
                 $responses = Ticket::find($ticket->id)->responses;
                 $ticket->responsesCount = count($responses);
             }
         } else {
             $tickets = Ticket::orderBy('created_at', 'desc')
-                            ->paginate(10); 
-            foreach($tickets as $ticket){
+                ->paginate(10);
+            foreach ($tickets as $ticket) {
                 $responses = Ticket::find($ticket->id)->responses;
                 $ticket->responsesCount = count($responses);
             }
-        }  
+        }
         return view('pages.dashboard', ['tickets' => $tickets]);
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         // $this->validate($request, [
         //     'showForm' => 'required'
         // ]);
@@ -48,19 +50,20 @@ class TicketController extends Controller
         // return view('pages.addticket');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // dd($request);
         session()->forget('showForm');
         $this->validate($request, [
             'subject' => 'string|max:150',
             'body' => 'required'
         ]);
-        
-        $latestTicket = Ticket::where('user_id', Auth::user()->id)
-                        ->latest('created_at')
-                        ->first();
 
-        if($latestTicket == null) {
+        $latestTicket = Ticket::where('user_id', Auth::user()->id)
+            ->latest('created_at')
+            ->first();
+
+        if ($latestTicket == null) {
             $addToRef = 0;
         } else {
             $pos = strpos($latestTicket->ref, "REF");
@@ -68,8 +71,8 @@ class TicketController extends Controller
             //increment the number
             $addToRef = strval($ticketNum + 1);
         }
-        
-        $ref = Auth::user()->id .'REF'. Auth::user()->fname[0] . Auth::user()->lname[0] . $addToRef;
+
+        $ref = Auth::user()->id . 'REF' . Auth::user()->fname[0] . Auth::user()->lname[0] . $addToRef;
         // dd($ref);
 
         Ticket::create([
@@ -77,7 +80,7 @@ class TicketController extends Controller
             'user_id' => Auth::user()->id,
             'service_id' => $request->get('service'),
             //'new' status is of id 1
-            'status_id' => 1, 
+            'status_id' => 1,
             'subject' => ($request->get('subject') == null ? "Assistance" : $request->get('subject')),
             'body' => $request->get('body')
         ]);
@@ -95,7 +98,23 @@ class TicketController extends Controller
         // return view('pages.tickets', ['ticket' => $ticket]);
     }
 
-    public function destroy(Request $request){
+    public function resolve(Request $request)
+    {
+        $status_id = Status::where('status', 'resolved')->pluck('id');
+        Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+    }
+
+    public function close(Request $request)
+    {
+        $status_id = Status::where('status', 'closed')->pluck('id');
+        Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+    }
+
+
+    public function destroy(Request $request)
+    {
         $this->validate($request, [
             'ticket_id' => 'required'
         ]);
@@ -105,5 +124,4 @@ class TicketController extends Controller
 
         return redirect()->route('dashboard');
     }
-
 }

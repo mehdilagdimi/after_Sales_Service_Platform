@@ -36,23 +36,47 @@
         </div>
     </div>
 
-    <div class="bg-gray-50 rounded-md p-3">
-        @admin
+    @admin
+    <div class="flex justify-center">
+        
         <div>
-            <form action="{{ route('deleteTicket') }}" method="POST" class="flex justify-end p-6 addTicket-btn">
+            <form action="{{ route('resolveTicket', ['id' => $ticket->id]) }}" method="POST" class="flex justify-end p-2 addTicket-btn">
                 @csrf
 
                 <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                <button type='submit' class="p-2 bg-white border-2 border-red-400 rounded text-black font-medium">
-                    DELETE
+                <button type='submit' class="p-2 bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-semibold">
+                    Resolve
                 </button>
             </form>
         </div>
-        @endadmin
+        <div>
+            <form action="{{ route('closeTicket', ['id' => $ticket->id]) }}" method="POST" class="flex justify-end p-2 addTicket-btn">
+                @csrf
+
+                <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
+                <button type='submit' class="p-2 bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-semibold">
+                    Close
+                </button>
+            </form>
+        </div>
+        <div>
+            <form action="{{ route('deleteTicket') }}" method="POST" class="flex justify-end p-2 addTicket-btn">
+                @csrf
+
+                <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
+                <button type='submit' class="p-2 bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-semibold">
+                    Delete
+                </button>
+            </form>
+        </div>
+    </div>
+    @endadmin
+
+    <div class="bg-gray-50 rounded-md p-3">
 
         @yield('responses')
     </div>
-
+    @if($ticket->status->status !== 'closed' && $ticket->status->status !== 'resolved')
     <div>
         <form action="{{ route('createResponse') }}" method="POST" class="flex justify-end p-6 addTicket-btn">
             @csrf
@@ -64,7 +88,8 @@
             </button>
         </form>
     </div>
-
+    @endif
+    
     @if (session('addResponse'))
         @yield('addResponse')
         {{ session()->forget('addResponse') }}

@@ -46,6 +46,8 @@
                 </div>
                 @if (session('showForm'))
                     @if (session('showForm') == $response->id)
+                    {{ session()->forget('addResponse') }}
+                    {{ Session::save() }}
                         <div class="flex flex-col justify-center items-center bg-white p-3 mx-12 rounded-md mt-3">
                             <form action="{{ route('updateResponse') }}" method="POST"
                                 class="bg-white flex flex-col border-solid border-indigo-600 border-2 w-full p-5 rounded-md">

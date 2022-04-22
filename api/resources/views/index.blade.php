@@ -34,6 +34,7 @@
             {{-- Show only when button above is clicked 'Need assistance?' --}}
             @if (session('showForm'))
                 {{ session()->forget('showForm') }}
+                {{ Session::save() }}
                 <div class="flex flex-col justify-center items-center bg-gray-50 p-3 mx-80 rounded-md">
                     <form action="{{ route('storeTicket') }}" method='POST'
                         class="bg-white flex flex-col border-solid border-indigo-600 border-2 w-full p-5 rounded-md">

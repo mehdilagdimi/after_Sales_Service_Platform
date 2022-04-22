@@ -42,6 +42,9 @@ Route::get('/tickets', [TicketController::class, 'index'])->name('showTickets');
 Route::post('/ticket/create', [TicketController::class, 'create'])->name('createTicket');
 Route::post('/ticket/store', [TicketController::class, 'store'])->name('storeTicket');
 Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
+Route::post('/ticket/resolve', [TicketController::class, 'resolve'])->name('resolveTicket');
+Route::post('/ticket/close', [TicketController::class, 'close'])->name('closeTicket');
+Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
 
 // Route::get('/tickets/{id}', [TicketController::class, 'ticket'])->name('getTicket')
 // Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('getTicket')
