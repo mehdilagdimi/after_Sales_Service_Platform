@@ -65,7 +65,8 @@
                     <div class="flex flex-row  bg-gray-50 border-gray-100 border-1 border-solid rounded-sm mx-20 p-1 m-4">
                         <div class="flex-1 flex flex-row border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
                             <div class="h-22 w-32 max-w-xl p-2 mr-4">
-                                <a href="{{route('getTicket' , ['id'=> $ticket->id])}}"><img class="" src="{{ asset('answer-svgrepo-com.svg') }}" alt='png'></a>
+                                <a href="{{ route('getTicket', ['id' => $ticket->id]) }}"><img class=""
+                                        src="{{ asset('answer-svgrepo-com.svg') }}" alt='png'></a>
                             </div>
                             <div>
                                 <h3 class="text-gray-500 text-xs">REF: {{ $ticket->ref }}</h3>
@@ -74,14 +75,14 @@
                                 <p>{{ $ticket->body }}</p>
                                 <div class="flex flex-row">
                                     <div class="font-tin text-xs ml-4 mt-8">
-                                        Answers : {{ ($ticket->responsesCount) }}
+                                        Answers : {{ $ticket->responsesCount }}
                                     </div>
                                     <div class="font-tin text-xs ml-4 mt-8">
                                         {{ $ticket->created_at }}
                                     </div>
-                         
+
                                 </div>
-                               
+
                             </div>
 
                         </div>
@@ -100,8 +101,11 @@
     </div>
 </body>
 
+
 <footer>
-    @yield('footer')
+    <div class="container mx-auto px-30">
+        @yield('footer')
+    </div>
 </footer>
 
 </html>

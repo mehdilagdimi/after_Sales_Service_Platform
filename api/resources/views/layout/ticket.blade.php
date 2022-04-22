@@ -1,4 +1,4 @@
-<div class="container mx-auto px-30">
+<div class="h-full flex flex-col container mx-auto px-30">
     @yield("navbar")
 
     <div class="border-none border-gray border-2 rounded-sm">
@@ -35,6 +35,7 @@
             </div>
         </div>
     </div>
+
     <div class="bg-gray-50 rounded-md p-3">
         @admin
         <div>
@@ -51,6 +52,7 @@
 
         @yield('responses')
     </div>
+
     <div>
         <form action="{{ route('createResponse') }}" method="POST" class="flex justify-end p-6 addTicket-btn">
             @csrf
@@ -62,6 +64,7 @@
             </button>
         </form>
     </div>
+
     @if (session('addResponse'))
         @yield('addResponse')
         {{ session()->forget('addResponse') }}
@@ -69,3 +72,4 @@
     @endif
 
     @yield('footer')
+</div>
