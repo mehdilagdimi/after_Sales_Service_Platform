@@ -1,8 +1,21 @@
-<div class="h-full flex flex-col container mx-auto px-30">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <script src="{{ asset('js/app.js')}}"></script> --}}
+
+    <title>Document</title>
+</head>
+
+<div class="h-full flex flex-col container items-center mx-auto">
     @yield("navbar")
 
-    <div class="border-none border-gray border-2 rounded-sm">
-        <div class="flex flex-row  bg-gray-50 border-gray-100 border-1 border-solid rounded-sm mx-20 p-1 m-4">
+    <div class="w-full border-none border-gray border-2 rounded-sm">
+        <div class="flex flex-row justify-center mx-auto bg-gray-50 border-gray-100 border-1 border-solid rounded-sm w-4/6 p-1 my-3">
             <div class="flex-1 flex flex-row border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
                 <div class="h-22 w-32 max-w-xl p-2 mr-4">
                     <a href="{{ route('getTicket', ['id' => $ticket->id]) }}"><img class=""
@@ -36,19 +49,20 @@
         </div>
     </div>
 
-    @admin
-    <div class="flex justify-center">
-        
+
+    <div class="flex w-full justify-end">
+       
         <div>
             <form action="{{ route('resolveTicket', ['id' => $ticket->id]) }}" method="POST" class="flex justify-end p-2 addTicket-btn">
                 @csrf
 
                 <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                <button type='submit' class="p-2 bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-semibold">
+                <button type='submit' class="p-2 bg-green-600 border-2 border-gray-200 rounded-md text-white font-semibold">
                     Resolve
                 </button>
             </form>
         </div>
+        @admin
         <div>
             <form action="{{ route('closeTicket', ['id' => $ticket->id]) }}" method="POST" class="flex justify-end p-2 addTicket-btn">
                 @csrf
@@ -69,13 +83,14 @@
                 </button>
             </form>
         </div>
+        @endadmin
     </div>
-    @endadmin
+    
 
-    <div class="bg-gray-50 rounded-md p-3">
-
+    <div class="bg-gray-50 rounded-md p-3 w-full">
         @yield('responses')
     </div>
+
     @if($ticket->status->status !== 'closed' && $ticket->status->status !== 'resolved')
     <div>
         <form action="{{ route('createResponse') }}" method="POST" class="flex justify-end p-6 addTicket-btn">
@@ -89,7 +104,7 @@
         </form>
     </div>
     @endif
-    
+
     @if (session('addResponse'))
         @yield('addResponse')
         {{ session()->forget('addResponse') }}

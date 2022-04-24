@@ -11,8 +11,11 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="container mx-auto px-30">
+<body class="w-full m-0">
+    <div class="md:container mx-auto w-full h-screen relative">
+        <footer class="absolute bottom-0 w-full ">
+            @yield('footer')
+        </footer>
 
         @yield('navbar')
 
@@ -35,7 +38,7 @@
             @if (session('showForm'))
                 {{ session()->forget('showForm') }}
                 {{ Session::save() }}
-                <div class="flex flex-col justify-center items-center bg-gray-50 p-3 mx-80 rounded-md">
+                <div class="flex flex-col justify-center mx-auto items-center bg-gray-50 p-3 w-4/6 rounded-md">
                     <form action="{{ route('storeTicket') }}" method='POST'
                         class="bg-white flex flex-col border-solid border-indigo-600 border-2 w-full p-5 rounded-md">
                         @csrf
@@ -61,13 +64,13 @@
                 </div>
             @endif
             @endclient
-            <div class="bg-white p-3">
+            <div class="bg-white p-3 m-4">
                 @foreach ($tickets as $ticket)
-                    <div class="flex flex-row  bg-gray-50 border-gray-100 border-1 border-solid rounded-sm mx-20 p-1 m-4">
-                        <div class="flex-1 flex flex-row border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
-                            <div class="h-22 w-32 max-w-xl p-2 mr-4">
+                    <div class="flex flex-row my-2 justify-center mx-auto bg-gray-50 border-gray-100 border-2 border-solid rounded-sm w-3/6">
+                        <div class="flex-1 flex flex-row border-solid bg-white rounded-sm p-6">
+                            <div class="h-22 w-32 max-w-xl p-2">
                                 <a href="{{ route('getTicket', ['id' => $ticket->id]) }}"><img class=""
-                                        src="{{ asset('answer-svgrepo-com.svg') }}" alt='png'></a>
+                                        src="{{ asset('ticket.png') }}" alt='png'></a>
                             </div>
                             <div>
                                 <h3 class="text-gray-500 text-xs">REF: {{ $ticket->ref }}</h3>
@@ -78,7 +81,7 @@
                                     <div class="font-tin text-xs ml-4 mt-8">
                                         Answers : {{ $ticket->responsesCount }}
                                     </div>
-                                    <div class="font-tin text-xs ml-4 mt-8">
+                                    <div class="font-thin text-xs ml-4 mt-8">
                                         {{ $ticket->created_at }}
                                     </div>
 
@@ -87,7 +90,7 @@
                             </div>
 
                         </div>
-                        <div class="border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
+                        <div class="border-solid bg-white rounded-sm p-6 m-0">
                             <div class="w-full">
                                 <h3 class="text-md font-semibold text-indigo-600">{{ $ticket->status->status }}</h3>
 
@@ -99,14 +102,12 @@
                 @endforeach
             </div>
         @endauth
+        
     </div>
+
 </body>
 
 
-<footer>
-    <div class="container mx-auto px-30">
-        @yield('footer')
-    </div>
-</footer>
+
 
 </html>

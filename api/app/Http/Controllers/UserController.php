@@ -14,7 +14,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware(['auth']);
-        // $this->middleware(['admin']);   
+        $this->middleware(['admin']);   
     }
 
     /**
@@ -70,9 +70,10 @@ class UserController extends Controller
     public function destroy(Request $request, User $user)
     {
         $this->validate($request, [
-            'ticket_id' => 'required'
+            'user_id' => 'required'
         ]);
-    
+        // dd($request);
+
         //if admin
         if(Auth::user()->role == "admin"){ 
             $admin = Auth::user();   

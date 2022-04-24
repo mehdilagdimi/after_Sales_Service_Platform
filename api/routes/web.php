@@ -44,14 +44,15 @@ Route::post('/ticket/store', [TicketController::class, 'store'])->name('storeTic
 Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
 Route::post('/ticket/resolve', [TicketController::class, 'resolve'])->name('resolveTicket');
 Route::post('/ticket/close', [TicketController::class, 'close'])->name('closeTicket');
-Route::post('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
+Route::delete('/ticket/delete', [TicketController::class, 'destroy'])->name('deleteTicket');
 
 // Route::get('/tickets/{id}', [TicketController::class, 'ticket'])->name('getTicket')
 // Route::get('/tickets/{ref}', [TicketController::class, 'ticket'])->name('getTicket')
     // ->middleware('auth');
 
     
-Route::get('/destroy', [TicketController::class, 'destroy'])->name('destroy');
+Route::get('/ticket/destroy', [TicketController::class, 'destroy'])->name('destroy');
+Route::delete('/user/delete', [UserController::class, 'destroy'])->name('deleteUser');
 
 
 Route::get('/ticket/{id}', [ResponseController::class, 'index'])->name('getTicket');
@@ -60,5 +61,5 @@ Route::post('/responses/create', [ResponseController::class, 'create'])->name('c
 Route::post('/responses/store', [ResponseController::class, 'store'])->name('storeResponse');
 Route::post('/responses/edit', [ResponseController::class, 'edit'])->name('editResponse');
 Route::post('/responses/update', [ResponseController::class, 'update'])->name('updateResponse');
-Route::post('/responses/delete', [ResponseController::class, 'destroy'])->name('deleteResponse');
+Route::delete('/responses/delete', [ResponseController::class, 'destroy'])->name('deleteResponse');
 
