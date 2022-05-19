@@ -100,7 +100,7 @@
         @yield('responses')
     </div>
 
-    @if($ticket->status->status !== 'closed' && $ticket->status->status !== 'resolved')
+    @if($ticket->status->status !== 'closed')
     <div>
         <form action="{{ route('createResponse') }}" method="POST" class="flex justify-end p-6 addTicket-btn">
             @csrf

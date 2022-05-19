@@ -11,27 +11,35 @@
 @section('responses')
     @isset($responses)
         @foreach ($responses as $response)
-            <div class="flex flex-row justify-center mx-auto w-4/6 p-3">
-                <div class="flex flex-col items-center mr-4">
-                    <img class="rounded-full h-16 w-16 max-w-xl p-2" src="{{ asset('man.png') }}" alt="Avatar">
-                    @admin
-                        <form action="{{ route('deleteUser') }}" method="POST">
-                            @csrf
-                            <input type="hidden" id="user_id" name="user_id" value="{{ $ticket->user_id }}">
-                            <button type='submit'><img class="rounded-full h-8 w-8 max-w-sm p-2" src="{{ asset('delete.png') }}"
-                                    alt="delete user">
-                            </button>
-                        </form>
-                    @endadmin
-                    @if ($response->user->role == 'admin')         
-                        <h3 class="text-sm font-bold"> Assistant </h3>
-                    @else
-                        <h3 class="text-sm font-bold">{{ $ticket->user->fname }} {{ $ticket->user->lname }}</h3>
-                    @endif
-                </div>
-                <div class="flex-1 rounded-lg bg-white border border-black p-4 mt-8">
-                    <h3> {{ $response->body }}
-                    </h3>
+            <div class="flex flex-row justify-between mx-auto w-4/6 p-3 flex-wrap">
+                <div class="flex flex-row justify-between items-center w-full m-2">
+                    <div class="flex shrink flex-col items-center justify-center m-2">
+                        <div>
+                        <img class="rounded-full h-16 w-16 p-2 m-1" src="{{ asset('man.png') }}" alt="Avatar">
+                        </div>
+                        @admin
+                            <form action="{{ route('deleteUser') }}" method="POST">
+                                @csrf
+                                <input type="hidden" id="user_id" name="user_id" value="{{ $ticket->user_id }}">
+                                <button type='submit'><img class="rounded-full h-8 w-8 max-w-sm p-2"
+                                        src="{{ asset('delete.png') }}" alt="delete user">
+                                </button>
+                            </form>
+                        @endadmin
+                        <div class="text-center m-2 p-1">
+                        @if ($response->user->role == 'admin')
+                            <h3 class="text-sm font-bold w-16 m-1"> Assistant </h3>
+                        @else
+                            <h3 class="text-sm font-bold w-16 m-1">{{ $ticket->user->fname }} {{ $ticket->user->lname }}</h3>
+                        @endif
+                        </div>
+                    </div>
+
+                    <div class="shrink-0 rounded-lg bg-white border border-black w-5/6 p-4 mt-8">
+                        <div>
+                            {{ $response->body }}
+                        </div>
+                    </div>
                 </div>
                 @client
                     <div class="">
@@ -76,7 +84,7 @@
                             {{-- <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}"> --}}
                             <label for="response">Response</label>
                             <textarea name="body" id="response" cols="30" rows="4" required
-                                class="text-black border-gray-200 border-solid border-2 p-3 m-3 rounded-md">
+                                class="text-black border-gray-200 max-w-sm border-solid border-2 p-3 m-3 rounded-md">
                             {{ $response->body }}
                             </textarea>
 
