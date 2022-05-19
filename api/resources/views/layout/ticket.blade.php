@@ -51,7 +51,16 @@
 
 
     <div class="flex w-full justify-end">
-       
+       @if( session("Resolve status"))
+       {{-- <p>{{ session("Resolve status") }}</p> --}}
+       <div>
+           <script>
+               alert("Can't resolve unanswered ticket!");
+           </script>
+        {{-- {{ session("Resolve status") }} --}}
+        {{ session()->forget("Resolve status") }}
+       </div>
+       @endif
         <div>
             <form action="{{ route('resolveTicket', ['id' => $ticket->id]) }}" method="POST" class="flex justify-end p-2 addTicket-btn">
                 @csrf

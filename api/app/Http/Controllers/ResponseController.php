@@ -55,9 +55,11 @@ class ResponseController extends Controller
             "ticket_id" => $request->ticket_id,
             "body" => $request->body
         ]);
-        $status_id = Status::where('status', 'answered')->pluck('id');
-
-        Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        
+        if (Auth::user()->role == 'admin') {
+            $status_id = Status::where('status', 'answered')->pluck('id');
+            Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        }
         session(["new response" => true]);
         
         // return view('pages.tickets', ['response' => $response]);
@@ -105,17 +107,17 @@ class ResponseController extends Controller
      * @param  \App\Models\Response  $response
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        $this->validate($request, [
-            'ticket_id' => 'required'
-        ]);
+    // public function destroy(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'ticket_id' => 'required'
+    //     ]);
 
-        $res = Response::find($request->response_id)->delete();
-        session()->flash('Ticket delete status', $res);
+    //     $res = Response::find($request->response_id)->delete();
+    //     session()->flash('Ticket delete status', $res);
 
-        return redirect()->route('getTicket', ['id' => $request->ticket_id]);
+    //     return redirect()->route('getTicket', ['id' => $request->ticket_id]);
 
-        // return $this->index($request);
-    }
+    //     // return $this->index($request);
+    // }
 }

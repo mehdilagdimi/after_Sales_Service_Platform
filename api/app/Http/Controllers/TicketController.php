@@ -100,8 +100,16 @@ class TicketController extends Controller
 
     public function resolve(Request $request)
     {
+
         $status_id = Status::where('status', 'resolved')->pluck('id');
-        Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        $status_answered = Status::where('status', 'answered')->pluck('id');
+        
+        if(Ticket::where('id', $request->ticket_id)->pluck('status_id') == $status_answered[0]){
+            Ticket::where('id', $request->ticket_id)->update(['status_id' => $status_id[0]]);
+        } else {
+            session(["Resolve status" => "Can't be resolved with no answers ticket"]);
+            session()->save();
+        }
         return redirect()->route('getTicket', ['id' => $request->ticket_id]);
     }
 
