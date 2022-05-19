@@ -5,7 +5,11 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        navBorder:"#FFCF4B",
+      }
+    },
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
       // poppins: ["Poppins", "sans-serif"],

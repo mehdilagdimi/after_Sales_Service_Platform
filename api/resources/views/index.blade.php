@@ -66,7 +66,7 @@
             @endclient
             <div class="bg-white p-3 m-4">
                 @foreach ($tickets as $ticket)
-                    <div class="flex flex-row my-2 justify-center mx-auto bg-gray-50 border-gray-100 border-2 border-solid rounded-sm w-3/6">
+                    <div class="flex flex-row my-2 justify-center mx-auto bg-gray-50 border-gray-100 border-2 border-solid rounded-sm w-3/6 shadow-lg">
                         <div class="flex-1 flex flex-row border-solid bg-white rounded-sm p-6">
                             <div class="h-22 w-32 max-w-xl p-2">
                                 <a href="{{ route('getTicket', ['id' => $ticket->id]) }}"><img class=""

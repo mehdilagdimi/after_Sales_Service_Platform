@@ -49,7 +49,7 @@
                             <input type="hidden" id="response_id" name="response_id" value="{{ $response->id }}">
                             <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
                             <button type='submit'
-                                class="p-2 bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-semibold">
+                                class="p-2 bg-navBorder shadow  rounded-md text-white font-semibold">
                                 EDIT
                             </button>
                         </form>
