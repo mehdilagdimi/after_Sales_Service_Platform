@@ -15,7 +15,7 @@
                 <div class="flex flex-row justify-between items-center w-full m-2">
                     <div class="flex shrink flex-col items-center justify-center m-2">
                         <div>
-                        <img class="rounded-full h-16 w-16 p-2 m-1" src="{{ asset('man.png') }}" alt="Avatar">
+                            <img class="rounded-full h-16 w-16 p-2 m-1" src="{{ asset('man.png') }}" alt="Avatar">
                         </div>
                         @admin
                             <form action="{{ route('deleteUser') }}" method="POST">
@@ -27,11 +27,12 @@
                             </form>
                         @endadmin
                         <div class="text-center m-2 p-1">
-                        @if ($response->user->role == 'admin')
-                            <h3 class="text-sm font-bold w-16 m-1"> Assistant </h3>
-                        @else
-                            <h3 class="text-sm font-bold w-16 m-1">{{ $ticket->user->fname }} {{ $ticket->user->lname }}</h3>
-                        @endif
+                            @if ($response->user->role == 'admin')
+                                <h3 class="text-sm font-bold w-16 m-1"> Assistant </h3>
+                            @else
+                                <h3 class="text-sm font-bold w-16 m-1">{{ $ticket->user->fname }} {{ $ticket->user->lname }}
+                                </h3>
+                            @endif
                         </div>
                     </div>
 
@@ -48,8 +49,7 @@
 
                             <input type="hidden" id="response_id" name="response_id" value="{{ $response->id }}">
                             <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                            <button type='submit'
-                                class="p-2 bg-navBorder shadow  rounded-md text-white font-semibold">
+                            <button type='submit' class="p-2 bg-navBorder shadow  rounded-md text-white font-semibold">
                                 EDIT
                             </button>
                         </form>
@@ -106,7 +106,7 @@
 
 
 @section('footer')
-    <footer class="absolute md:container  bottom-0  w-full ">
+    <footer class="md:container w-full mt-auto">
         @include('layout.footer')
     </footer>
 @endsection
