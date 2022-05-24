@@ -14,10 +14,10 @@
 <div class="h-full flex flex-col container items-center mx-auto">
     @yield('navbar')
 
-    <div class="flex flex-col w-full border-none border-gray border-2 rounded-sm">
+    <div class="flex flex-col w-full rounded-sm">
         <div
-            class="flex flex-row justify-center mx-auto bg-gray-50 border-gray-100 border-1 border-solid rounded-sm w-4/6 p-1 my-3 shadow">
-            <div class="flex-1 flex flex-row border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
+            class="flex flex-row justify-center mx-auto  border-solid border-orange-300 border-0 rounded-2xl w-4/6 my-3 mt-10 shadow-lg">
+            <div class="flex-1 flex flex-row border-solid bg-orange-50 rounded-sm p-6 m-0">
                 <div class="h-22 w-32 max-w-xl p-2 mr-4">
                     <a href="{{ route('getTicket', ['id' => $ticket->id]) }}"><img class=""
                             src="{{ asset('answer-svgrepo-com.svg') }}" alt='png'></a>
@@ -40,9 +40,9 @@
                 </div>
 
             </div>
-            <div class="border-solid bg-white border-gray-50 border-0 rounded-sm p-6 m-0">
+            <div class="border-solid bg-orange-50 border-gray-50 border-0 rounded-sm p-6 m-0">
                 <div class="w-full">
-                    <h3 class="text-md font-semibold text-red-600">{{ $ticket->status->status }}</h3>
+                    <h3 class="text-md font-semibold text-orange-600">{{ $ticket->status->status }}</h3>
 
                     <img class="mx-auto h-5 w-auto" src='{{ asset('bookmark-svgrepo-com.svg') }}' alt="pinpoint">
                 </div>
@@ -68,7 +68,7 @@
                 @csrf
 
                 <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                <button type='submit' class="p-2 bg-navBorder shadow rounded-md text-white font-semibold">
+                <button type='submit' class="p-2 bg-orange-600 shadow rounded-md text-white font-semibold">
                     RESOLVE
                 </button>
             </form>
@@ -109,7 +109,7 @@
                 @csrf
 
                 <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                <button type='submit' class="p-2 bg-navBorder shadow-lg  rounded-md text-white font-semibold">
+                <button type='submit' class="p-2 bg-orange-300 shadow-lg  rounded-md text-white font-semibold">
                     RESPOND
                 </button>
             </form>

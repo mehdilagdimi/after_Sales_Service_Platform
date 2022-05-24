@@ -26,8 +26,8 @@
             @client
                 <form action="{{ route('createTicket') }}" method='POST' class="flex justify-end p-6 addTicket-btn">
                     @csrf
-                    <div class="p-1 bg-gray-100 rounded-lg mx-20">
-                        <button type='submit' class="p-2 bg-white border-2 border-black rounded text-black font-semibold">
+                    <div class="mx-20">
+                        <button type='submit' class="px-4 py-3 bg-orange-600 rounded-md text-white font-semibold shadow-md">
                             ADD TICKET</button>
                     </div>
                 </form>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="border-solid bg-white rounded-sm p-6 m-0">
                             <div class="w-full">
-                                <h3 class="text-md font-semibold text-red-600">{{ $ticket->status->status }}</h3>
+                                <h3 class="text-md font-semibold text-orange-600">{{ $ticket->status->status }}</h3>
 
                                 <img class="mx-auto h-5 w-auto" src='{{ asset('bookmark-svgrepo-com.svg') }}'
                                     alt="pinpoint">

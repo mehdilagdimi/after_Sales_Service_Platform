@@ -11,7 +11,7 @@
 @section('responses')
     @isset($responses)
         @foreach ($responses as $response)
-            <div class="flex flex-row justify-between mx-auto w-4/6 p-3 flex-wrap">
+            <div class="flex flex-col justify-between mx-auto w-4/6 p-3">
                 <div class="flex flex-row justify-between items-center w-full m-2">
                     <div class="flex shrink flex-col items-center justify-center m-2">
                         <div>
@@ -43,13 +43,13 @@
                     </div>
                 </div>
                 @client
-                    <div class="">
-                        <form action="{{ route('editResponse') }}" method="POST" class="flex justify-end p-6 mt-8">
+                    <div class="text-center h-full">
+                        <form action="{{ route('editResponse') }}" method="POST" class="flex justify-end h-full">
                             @csrf
 
                             <input type="hidden" id="response_id" name="response_id" value="{{ $response->id }}">
                             <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
-                            <button type='submit' class="p-2 bg-navBorder shadow  rounded-md text-white font-semibold">
+                            <button type='submit' class="p-2 bg-orange-300 shadow  rounded-md text-white font-semibold">
                                 EDIT
                             </button>
                         </form>
@@ -76,7 +76,7 @@
                     {{ Session::save() }}
                     <div class="flex flex-col justify-center items-center bg-white p-3 mx-12 rounded-md mt-3">
                         <form action="{{ route('updateResponse') }}" method="POST"
-                            class="bg-white flex flex-col border-solid border-indigo-600 border-2 w-full p-5 rounded-md">
+                            class="bg-white flex flex-col border-solid border-orange-300 border-2 w-full p-5 rounded-md">
                             @csrf
 
                             <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $ticket->id }}">
@@ -89,7 +89,7 @@
                             </textarea>
 
                             <button type="submit"
-                                class="py-2 px-6 mt-4 mx-auto bg-indigo-600 border-2 border-gray-200 rounded-md text-white font-bold">
+                                class="py-2 px-6 mt-4 mx-auto bg-navBorder border-2 border-gray-200 rounded-md text-white font-bold">
                                 Update
                             </button>
                         </form>

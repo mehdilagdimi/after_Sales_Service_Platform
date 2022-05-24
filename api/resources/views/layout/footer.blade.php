@@ -1,4 +1,4 @@
-<div class="p-1 flex w-full justify-end shadow-md bg-navBorder">
+<div class="p-3 flex items-center w-full h-[40px] justify-end shadow-md bg-orange-300">
     <div class="">
         <p class="text-sm font-semibold"> Copyright © 2022</p>
     </div>

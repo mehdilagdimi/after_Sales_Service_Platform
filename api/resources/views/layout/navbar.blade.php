@@ -3,7 +3,7 @@
 @section('navbar')
 
 
-<nav class="p-2 flex justify-end w-full bg-navBorder shadow-md">
+<nav class="p-2 flex justify-end w-full h-[50px] bg-orange-300 shadow-md">
     <ul class="flex items-center text-sm font-semibold">
         <li>
             <a href="{{ route('dashboard')}}" class="p-4">   Home 
