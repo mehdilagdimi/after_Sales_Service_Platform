@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('staticpage');
-    })->name('home')
+Route::get('/', [DashBoardController::class, 'index'])->name('dashboard')
       ->middleware('auth');
 
 Route::get('/signup', [RegisterController::class, 'index']);
